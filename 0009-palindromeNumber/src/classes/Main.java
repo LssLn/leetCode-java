@@ -14,5 +14,9 @@ public class Main {
 		number=15951;
 		isPalindrome = solution.isPalindrome(number);
 		System.out.println("is "+number+" palindrome?: " +isPalindrome);
+		
+		number=-15951;
+		isPalindrome = solution.isPalindrome(number);
+		System.out.println("is "+number+" palindrome?: " +isPalindrome);
 	}
 }

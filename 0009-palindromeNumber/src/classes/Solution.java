@@ -12,6 +12,9 @@ public class Solution {
 	      return reverse;
 	}
 	public boolean isPalindrome(int x) {
+		if(x<0) {
+			return false;
+		}
 		int reverse = reverseNumber(x);
 		if(reverse == x) {
 			return true;
