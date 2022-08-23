@@ -6,7 +6,6 @@ import java.util.Set;
 public class Solution {
 	 public String longestCommonPrefix(String[] strs) {
 	        int minimumLength=strs[0].length();
-	        boolean found=false;
 	        String prefix = "";
 	        
 	        //Cycling string array - determining smaller string's lenght 
@@ -38,30 +37,5 @@ public class Solution {
 		        	}
 		        }
 	        }
-	        
-	        
-//	        int count=0;
-//	        while(!found) {
-//	        	count=0;
-//		        //substring() - 1st param cannot be equal or smaller than 2nd param, else it Throws:IndexOutOfBoundsException
-//	        	if(minimumLength > 0) {
-//	        		//if not all ss elements are equals, prefix is not common
-//		        	for(int j=0;j<strs.length;j++) {
-//			        	//confronting each element of substrings ss
-//			        	for(int k=0;k<strs.length;k++) {
-//			        		//with eachothers
-//			        		if(subStrs.get(j).equals(subStrs.get(k))) {
-//			        			count++;
-//			        		}
-//			        	}
-//		        	}
-//			        if(count==strs.length) {
-//		        			prefix = subStrs.get(0);
-//			        }else {
-//				       	minimumLength -= 1;
-//				       	subStrs.removeAll(subStrs);
-//			        }
-//		        }
-//	        }
 	    }
 }
