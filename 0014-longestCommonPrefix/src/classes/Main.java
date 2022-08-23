@@ -5,6 +5,6 @@ public class Main {
 		Solution solution = new Solution();
 
 		String[] s = {"flower","flow","flight"};
-		solution.longestCommonPrefix(s);
+		System.out.println(solution.longestCommonPrefix(s));
 	}
 }
