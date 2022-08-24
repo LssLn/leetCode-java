@@ -33,9 +33,14 @@ public class Solution {
 						arrayIndex++;
 					}
 				}
+				indexMap.put(c, indexes);
 			}
 		}
 		
+		//indexMap contains the indexes of the chars that are repeated
+		
+		//calculating the first repeating
+		//element with indexes[1] smaller is the first repeating
 		
 		return result;
     }
