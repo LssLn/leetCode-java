@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,8 +39,15 @@ public class Solution {
 		//indexMap contains the indexes of the chars that are repeated
 		
 		//calculating the first repeating
-		//element with indexes[1] smaller is the first repeating
 		
+		int smallerIndex = 101; //will always be > than any index
+		//element with indexes[1] smaller is the first repeating
+		for(String c:indexMap.keySet()) {
+			Integer[] cIndex = indexMap.get(c); 
+			if(cIndex[1]<smallerIndex) {
+				result= c.charAt(0);
+			}
+		}
 		return result;
     }
 }
