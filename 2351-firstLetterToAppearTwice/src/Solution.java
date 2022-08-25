@@ -45,6 +45,7 @@ public class Solution {
 		for(String c:indexMap.keySet()) {
 			Integer[] cIndex = indexMap.get(c); 
 			if(cIndex[1]<smallerIndex) {
+				smallerIndex=cIndex[1];
 				result= c.charAt(0);
 			}
 		}
