@@ -31,20 +31,29 @@ public class Solution {
     	//	-	their sum
     	
     	// the matrix needs to be slided, starting from 1 index, increasing the other index after each slide
-    	for(int row=0;row<m;row++) { 		// single row
-    		for(int col_start=0;col_start<n;col_start++) {	//col = col_start
+    	for(int row=1;row<=m;row++) { 		// single row
+    		for(int colStart=1;colStart<=n;colStart++) {	//col = col_start
     	    	Integer sum=0;
-    			for(int col_end=0;col_end<row;col_end++) {	//column increases, from col_start to col_end, which is <= row
-    				Integer[] row_array = {row,row};
-    				Integer[] col_array = {col_start,col_end};
-    				int diff = col_end-col_start;
-    				sum += matrix[row][col_start];
-    				for(int i=1;i<diff;i++) { //diff-1 elements to sum to col_start and col_end
-    					sum += matrix[row][col_start]+i;
-    				}
-    				sum += matrix[row][col_end];
+    			for(int colEnd=colStart;colEnd<=row;colEnd++) {	//column increases, from col_start to col_end, which is <= row
+    				int rowFx = row-1;
+    				int colStartFx = colStart-1;
+    				int colEndFx = colEnd-1;
     				
-    				System.out.println(sum);
+    				Integer[] row_array = {rowFx,rowFx};
+    				Integer[] col_array = {colStartFx,colEndFx};
+    				int diff = colEndFx-colStartFx;
+    				System.out.println("\nnew sum\n"+rowFx+", "+colStartFx+" "+colEndFx+"... diff:"+diff+
+    						"\n"+matrix[rowFx][colStartFx]);
+
+    				sum += matrix[rowFx][colStartFx];
+    				for(int i=1;i<diff;i++) { //diff-1 elements to sum to col_start and col_end
+    					sum += matrix[rowFx][colStartFx]+i;
+    					System.out.println(matrix[rowFx][colStartFx]+i);
+    				}
+    				sum += matrix[rowFx][colEndFx];
+    				System.out.println(matrix[rowFx][colEndFx]);
+    				
+    				System.out.println("sum: "+sum);
     				if(sum<k) {
         				RectangleSum rect = new RectangleSum(row_array,col_array,sum);
         				rectangles.add(rect);
