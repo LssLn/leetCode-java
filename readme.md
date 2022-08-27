@@ -5,4 +5,8 @@ Repository used as a container to store exercises done on leetcode.com using Jav
     <li>0009 - palindromeNumber</li>    
     <li>0013 - romanToInt</li>
 	<li>0014 - longestCommonPrefix</li>    
+    <li>0058 - lengthOfLastWord</li>
+	<li>0363 - maxSumOfTriangleNoLargerThanK</li> 
+    <li>1704 - halvesStringsAlike</li>
+	<li>2351 - firstLetterToAppearTwice</li> 
 </ul>
