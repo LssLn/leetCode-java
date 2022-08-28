@@ -31,7 +31,8 @@ public class Solution {
     	//	-	their sum
     	
     	// the matrix needs to be slided, starting from 1 index, increasing the other index after each slide
-    	for(int row=1;row<=m;row++) { 		// single row
+    	for(int row=1;row<=m;row++) { 		// single row 
+    		
     		for(int colStart=1;colStart<=n;colStart++) {	//col = col_start
     	    	Integer sum=0;
     			for(int colEnd=colStart;colEnd<=row;colEnd++) {	//column increases, from col_start to col_end, which is <= row
