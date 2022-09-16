@@ -1,4 +1,4 @@
-package classes;
+package src.classes;
 
 public class Solution {
 	public String[] findWords(String[] words) {
@@ -45,7 +45,10 @@ public class Solution {
 		     
 		     //checking rowMatched flags
 		     boolean wordIsValid = checkWordValidity(row1Matched,row2Matched,row3Matched);
-
+		     if(wordIsValid) {
+		    	 result[resultCounter] = word;
+		    	 resultCounter++;
+		     }
 		}
 		
 		return result;
