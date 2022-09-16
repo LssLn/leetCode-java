@@ -16,11 +16,11 @@ public class Solution {
 		
 		//iterating words array
 		for(String word:words) {
-			System.out.println("\nWord: "+word+" :");
+//			System.out.println("\nWord: "+word+" :");
 			//iterating each word characters
 		     for(int i=0;i<word.length();i++) {
 		    	 String wordChar = "" + word.charAt(i);
-		    	 System.out.print(" "+wordChar);
+//		    	 System.out.print(" "+wordChar);
 		    	 //iterating row1 characters
 		    	 for(int j=0;j<row1.length();j++) {
 		    		 String row1Char = "" + row1.charAt(j);
