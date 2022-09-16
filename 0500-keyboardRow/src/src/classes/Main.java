@@ -17,6 +17,26 @@ public class Main {
 			for(String r : result) {
 				System.out.println(r);
 			}
+			
+			
+			words= new String[] {"omk"};
+			result = sol.findWords(words);
+			
+			System.out.println("\n\nOutput:");
+			for(String r : result) {
+				System.out.println(r);
+			}
+			
+			
+			words= new String[] {"adsdf","sfd"};
+			result = sol.findWords(words);
+			
+			System.out.println("\n\nOutput:");
+			for(String r : result) {
+				System.out.println(r);
+			}
+			
+			
 	}
 
 }

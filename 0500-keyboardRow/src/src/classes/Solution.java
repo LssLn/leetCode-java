@@ -1,10 +1,14 @@
 package src.classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Solution {
 	public String[] findWords(String[] words) {
 		//init words fitting, maximum size is equal to words
-		String[] result= new String[words.length];
-		int resultCounter=0;
+		List<String> resultList = new ArrayList<String>(); //used to make return type String[] size dynamic
+		int counter=0;
+		
 		String row1 = "qwertyuiop";
 		String row2 = "asdfghjkl";
 		String row3 = "zxcvbnm";
@@ -46,11 +50,21 @@ public class Solution {
 		     //checking rowMatched flags
 		     boolean wordIsValid = checkWordValidity(row1Matched,row2Matched,row3Matched);
 		     if(wordIsValid) {
-		    	 result[resultCounter] = word;
-		    	 resultCounter++;
+		    	 resultList.add(word);
 		     }
+		     row1Matched = false;
+		     row2Matched = false;
+		     row3Matched=false;
 		}
 		
+		//populating result
+		int listSize = resultList.size();
+		String[] result= new String[listSize];
+		
+		for(int k=0;k<listSize;k++) {
+			result[counter] = resultList.get(counter);
+			counter++;
+		}
 		return result;
 	}
 
