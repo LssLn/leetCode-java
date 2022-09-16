@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Solution {
 	public String[] findWords(String[] words) {
-		//init words fitting, maximum size is equal to words
 		List<String> resultList = new ArrayList<String>(); //used to make return type String[] size dynamic
 		int counter=0;
 		
