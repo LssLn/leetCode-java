@@ -1,5 +1,7 @@
 package src.classes;
 
+import java.math.BigInteger;
+
 public class Solution {
 	public int[] plusOne(int[] digits) {		
 		//Converting int[] to string
@@ -11,14 +13,17 @@ public class Solution {
 		}
 		System.out.println("]");
 		
-		//converting string to int
-		int number = Integer.parseInt(sb.toString());
-		System.out.println("intDigits: "+number);
+		//converting string to int (Double due to numberformatexception for big numbers)
+		Double number = Double.parseDouble(sb.toString());
+		System.out.print("intDigits: "+number);
 		
 		//adding plus one
 		number++;
+		System.out.println("	+1: "+number);
+
 		String strNumber = String.valueOf(number);
-		
+		strNumber.replace(".0","");
+		System.out.println("String: "+strNumber);
 		
 		//converting int to int[]
 		//getting the length of the int value
