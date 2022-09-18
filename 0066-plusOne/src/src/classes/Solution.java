@@ -4,11 +4,19 @@ import java.util.Arrays;
 
 public class Solution {
 	public int[] plusOne(int[] digits) {		
-        System.out.println("Inside plusOne");
+		if(digits.length==1) {
+			if(digits[0]==9) {
+				digits = new int[] {1,0};
+			}
+			else {
+				digits[0] += 1;
+			}
+			return digits;
+		}
+		
 		//starting reading from right to left
         for(int i=digits.length-1;i>0;i--){
             int current = digits[i];
-            System.out.println("Current: "+current);
             if(current!=9) { //simple increment
                 current++;
                 digits[i] = current;
@@ -29,16 +37,8 @@ public class Solution {
                         //if it is the first number
                         if(i==0) { // increasing the array size
                         	int[] digitsAux = Arrays.copyOf(digits,digits.length+1);
-
-                            System.out.println("\nOG input:");
-                            for(int d: digits){
-                                System.out.print(d+" ");
-                            }
-
-                            System.out.println("\nmod input:");
-                            for(int d: digitsAux){
-                                System.out.print(d+" ");
-                            }
+                        	digitsAux[0]= 1;
+                        	
                             digits=digitsAux;
                         }
                     } else { //we are done

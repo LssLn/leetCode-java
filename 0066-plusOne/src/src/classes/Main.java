@@ -46,6 +46,23 @@ public class Main {
 		}
 		System.out.println("]\n");
 		
+		digits = new int[]{9,9};
+		result = sol.plusOne(digits);
+		System.out.print("Result: [ ");
+		for(int r : result) {
+			System.out.print(r+" ");
+		}
+		System.out.println("]\n");
+		
+		
+		digits = new int[]{9};
+		result = sol.plusOne(digits);
+		System.out.print("Result: [ ");
+		for(int r : result) {
+			System.out.print(r+" ");
+		}
+		System.out.println("]\n");
+		
 	}
 
 }
