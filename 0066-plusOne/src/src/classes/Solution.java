@@ -1,42 +1,55 @@
 package src.classes;
 
-import java.math.BigInteger;
+import java.util.Arrays;
 
 public class Solution {
 	public int[] plusOne(int[] digits) {		
-		//Converting int[] to string
-		StringBuilder sb = new StringBuilder();
-		System.out.print("Array in input: [ ");
-		for(int d : digits) {
-			System.out.print(d+" ");
-			sb.append(d);
-		}
-		System.out.println("]");
-		
-		//converting string to int (Double due to numberformatexception for big numbers)
-		Double number = Double.parseDouble(sb.toString());
-		System.out.print("intDigits: "+number);
-		
-		//adding plus one
-		number++;
-		System.out.println("	+1: "+number);
+        System.out.println("Inside plusOne");
+		//starting reading from right to left
+        for(int i=digits.length-1;i>0;i--){
+            int current = digits[i];
+            System.out.println("Current: "+current);
+            if(current!=9) { //simple increment
+                current++;
+                digits[i] = current;
+                return digits;
+            }else { //case in which the current digit become 9 --> 0
+                // i need to change the next (i-1) incrementing its value of 1
+                // if the value i-1 is again 9, then move to i-2 and so on
+                current = 0; //9+1
+                digits[i] = current;
 
-		String strNumber = String.valueOf(number);
-		strNumber.replace(".0","");
-		System.out.println("String: "+strNumber);
-		
-		//converting int to int[]
-		//getting the length of the int value
-		int length = String.valueOf(number).length();
-		System.out.println("length of the converted value +1 "+number+" : "+length);
-		
-		int[] result = new int[length];
-		
-		for(int i=0;i<length;i++) {
-			result[i]=strNumber.charAt(i)-48; //ASCII conversion
-		}
-		
+                //changed the first 9, now i need to check all the possible others
+                do {
+                    //check if digits i-1 is 9
+                    if (digits[i - 1] == 9) { // 9 --> 0
+                        digits[i - 1] = 0;
+                        i--;            // to the next element, cycling
+                        
+                        //if it is the first number
+                        if(i==0) { // increasing the array size
+                        	int[] digitsAux = Arrays.copyOf(digits,digits.length+1);
 
-		return result;
+                            System.out.println("\nOG input:");
+                            for(int d: digits){
+                                System.out.print(d+" ");
+                            }
+
+                            System.out.println("\nmod input:");
+                            for(int d: digitsAux){
+                                System.out.print(d+" ");
+                            }
+                            digits=digitsAux;
+                        }
+                    } else { //we are done
+                        digits[i - 1] += 1;
+                        return digits;
+                    }
+
+                } while (i>0); //skipping the first digit
+            }
+        }
+
+        return digits;
     }
 }
