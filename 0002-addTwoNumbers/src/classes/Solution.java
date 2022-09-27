@@ -38,6 +38,8 @@ public class Solution {
         int sum = l1Number+l2Number;
         sum = reverseNumber(sum);
         
+        System.out.println(l1Number + " + "+l2Number+" = "+sum);
+        
         //creating list to return
         //for sum.length { listNode.val & next }
         
