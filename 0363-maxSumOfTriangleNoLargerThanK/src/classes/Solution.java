@@ -14,7 +14,7 @@ public class Solution {
 		System.out.println("Input:");
     	for(int i=0;i<m;i++) {
     		for(int j=0;j<n;j++) {
-    			System.out.print(matrix[i][j]+" ");
+    			System.out.print(matrix[i][j]+"\t");
     		}
     		System.out.println();
     	}
@@ -23,7 +23,7 @@ public class Solution {
         //	-	< K
         // 	-	> than all the other possible sums inside the matrix
         
-        // Exec the sums of all the rectangles inside the objects rectangleSum
+        // Calculate the sum of each possible rectangle, storing them in the objects rectangleSum
         // store their info:	
         // 	-	which rows and columns corresponds to the rectangle 
         //			(ie. In the example 1 figure the blue rectangle has rows 0,1	columns 1,2
@@ -43,7 +43,7 @@ public class Solution {
     				Integer[] row_array = {rowFx,rowFx};
     				Integer[] col_array = {colStartFx,colEndFx};
     				int diff = colEndFx-colStartFx;
-    				System.out.println("\nnew sum\n"+rowFx+", "+colStartFx+" "+colEndFx+"... diff:"+diff+
+    				System.out.println("\nnew sum\nrow:"+rowFx+", from col:"+colStartFx+" to col:"+colEndFx+"... diff:"+diff+
     						"\n"+matrix[rowFx][colStartFx]);
 
     				sum += matrix[rowFx][colStartFx];
