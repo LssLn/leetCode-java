@@ -1,7 +1,9 @@
 package classes;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class SolutionV2 {
 	public static String ANSI_GREEN="\033[92m"; // green = grass
@@ -17,6 +19,8 @@ public class SolutionV2 {
     public int maxSumSubmatrix(int[][] matrix, int k) {
     	//given an MxN matrix		=	M columns	N rows
     	int sum = 0;
+    	Set<Integer> sumSet = new HashSet<>();
+    	
     	int matrixRows = matrix.length;	// N
     	int matrixColumns = matrix[0].length;	// M
     	
@@ -59,21 +63,30 @@ public class SolutionV2 {
     			for(int columnCounter = 0; columnCounter <matrixColumns;columnCounter++) {
             		int columnCounterFixed = columnCounter + 1; // used with the matrix
 //    				System.out.print(" column "+columnCounterFixed);
+            		if(matrix[irow-1][columnCounterFixed-1]<=k) {
+            			sumSet.add(matrix[irow-1][columnCounterFixed-1]);
+            		}
             		sumRow+=matrix[irow-1][columnCounterFixed-1];
-            		
+            		if(sumRow<=k) {
+            			sumSet.add(sumRow);
+            		}
     				System.out.print(" ["+matrix[irow-1][columnCounterFixed-1]+"] ");
     			}
     			iterationSum += sumRow;
     			if(iterationSum > k) {
         			System.out.println(" row sum ==> "+sumRow+ANSI_RED+"		iteration sum = "+iterationSum+ANSI_WHITE);
     			}else {
-    				sum=iterationSum;
-        			System.out.println(" row sum ==> "+sumRow+ANSI_GREEN+"		iteration sum = "+iterationSum+ANSI_WHITE);
+    				sumSet.add(iterationSum);
+    				System.out.println(" row sum ==> "+sumRow+ANSI_GREEN+"		iteration sum = "+iterationSum+ANSI_WHITE);
     			}
     		}
     		rowStart++;
     	}
-    	
+    	for(Integer n:sumSet) {
+    		if(n>sum && n<=k) {
+    			sum=n;
+    		}
+    	}
     	return sum;
     }
 }
