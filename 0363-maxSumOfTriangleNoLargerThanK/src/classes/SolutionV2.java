@@ -16,6 +16,7 @@ public class SolutionV2 {
 	
     public int maxSumSubmatrix(int[][] matrix, int k) {
     	//given an MxN matrix		=	M columns	N rows
+    	int sum = 0;
     	int matrixRows = matrix.length;	// N
     	int matrixColumns = matrix[0].length;	// M
     	
@@ -59,20 +60,20 @@ public class SolutionV2 {
             		int columnCounterFixed = columnCounter + 1; // used with the matrix
 //    				System.out.print(" column "+columnCounterFixed);
             		sumRow+=matrix[irow-1][columnCounterFixed-1];
-            		iterationSum += sumRow;
+            		
     				System.out.print(" ["+matrix[irow-1][columnCounterFixed-1]+"] ");
     			}
-    			System.out.println(" row sum ==> "+sumRow+ANSI_GREEN+"		iteration sum = "+iterationSum+ANSI_WHITE);
+    			iterationSum += sumRow;
+    			if(iterationSum > k) {
+        			System.out.println(" row sum ==> "+sumRow+ANSI_RED+"		iteration sum = "+iterationSum+ANSI_WHITE);
+    			}else {
+    				sum=iterationSum;
+        			System.out.println(" row sum ==> "+sumRow+ANSI_GREEN+"		iteration sum = "+iterationSum+ANSI_WHITE);
+    			}
     		}
     		rowStart++;
-    		
-        		
-        		//calculating math graph
-        		
-        		
-        		//adding to dataMap only if sum <= K
     	}
     	
-    	return 0;
+    	return sum;
     }
 }
