@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class SolutionV2 {
+public class SolutionV3 {
 	public static String ANSI_GREEN="\033[92m"; // green = grass
 	public static String ANSI_RED="\033[31m";
 	public static String ANSI_YELLOW="\033[33m";
@@ -70,15 +70,15 @@ public class SolutionV2 {
     			//translation for the column	-HAS YET TO BE IMPLEMENTED
     			System.out.print(" 			");
     			for(int columnCounter = 0; columnCounter <matrixColumns;columnCounter++) {
-//            		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
+            		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
 //    				System.out.print(" column "+columnCounterFixed);
             		
-    				System.out.print(" ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter]+ANSI_WHITE+"] ");   				
-            		if(matrix[rowStart-1+irow-1][columnCounter]<=k) {
-//            			if(matrix[irow-1][columnCounterFixed-1]<=k) {
-            			sumSet.add(matrix[rowStart-1+irow-1][columnCounter]);
+    				System.out.print(" ["+ANSI_YELLOW+matrix[irow-1][columnCounterFixed-1]+ANSI_WHITE+"] ");   				
+            		if(matrix[irow-1][columnCounterFixed-1]<=k) {
+            			if(matrix[irow-rowStart][columnCounterFixed-1]<=k) {
+            			sumSet.add(matrix[irow-1][columnCounterFixed-1]);
             		}
-            		sumRow+=matrix[rowStart-1+irow-1][columnCounter];
+            		sumRow+=matrix[irow-1][columnCounterFixed-1];
             		if(sumRow<=k) {
             			sumSet.add(sumRow);
             		}
@@ -115,7 +115,7 @@ public class SolutionV2 {
     	return sum;
     	
     }
-    
+
     // TODO: Solve out of bounds for columns 
     /*
         public int calcMatrixSumColumns(int[][] matrix, int k, int matrixRows, int matrixColumns) {
@@ -175,5 +175,4 @@ public class SolutionV2 {
         	
         }
    */
-        
-}
+}}
