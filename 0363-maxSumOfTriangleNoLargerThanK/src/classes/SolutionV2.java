@@ -72,12 +72,17 @@ public class SolutionV2 {
     	        			System.out.println("\t\t row "+rowCounterFixed+", analyzing row: "+ANSI_CYAN+(rowCounterFixed-1+irow)+ANSI_WHITE);
     	        			//selected row doing the scanning of all the combinations with all the columns
     	        			int sumRow = 0;
+    	        			//Added nullIterationFlag
+    	        			//if the current iteration has 0 elements the flag won't be changed, in order to avoid that sumRow (initialied at 0 but never changed) is added to sumSet
+    	        			boolean nullIterationFlag = true;
     	        			System.out.print("\t\t");
     	        			for(int columnCounter = 0; columnCounter<matrixColumns;columnCounter++) {
 //    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
 //    	        				columnIterations--;
     	        				try {
     	            				if((columnCounter+columnStart-1)<=(columnIterations)) { //avoiding ArrayIndexOutOfBoundsException
+    	            					nullIterationFlag = false;
+    	            					
     	            					System.out.print("\tcol "+(columnCounter+columnStart) + " ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter+columnStart-1]+ANSI_WHITE+"] ");   				
     	                        		if(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]<=k) {
     	                        			sumSet.add(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]);
@@ -104,12 +109,17 @@ public class SolutionV2 {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
     	            			}
     	        			}else {
-    	        				sumSet.add(iterationSum);
+//    	        				if(!nullIterationFlag) {
+//    	        					sumSet.add(iterationSum);
+//    	        				}
     	        				System.out.println(" row sum ==> "+ANSI_GREEN+sumRow+ANSI_WHITE);
     	        				if(iterationSum>k) {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
+    	            				if(!nullIterationFlag) {
+    	            					sumSet.add(iterationSum);
+    	            				}
     	            			}
     	        			}
     	        		}
@@ -127,12 +137,17 @@ public class SolutionV2 {
     	        			System.out.println("\t\t row "+rowCounterFixed+", analyzing row: "+ANSI_CYAN+(rowCounterFixed-1+irow)+ANSI_WHITE);
     	        			//selected row doing the scanning of all the combinations with all the columns
     	        			int sumRow = 0;
+    	        			//Added nullIterationFlag
+    	        			//if the current iteration has 0 elements the flag won't be changed, in order to avoid that sumRow (initialied at 0 but never changed) is added to sumSet
+    	        			boolean nullIterationFlag = true;
     	        			System.out.print("\t\t");
     	        			for(int columnCounter = matrixColumns-1; columnCounter>=0;columnCounter--) {
 //    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
 //    	        				columnIterations--;
     	        				try {
     	            				if((columnCounter-columnStart)>=0) { //avoiding ArrayIndexOutOfBoundsException
+    	            					nullIterationFlag = false;
+    	            					
     	            					System.out.print("\tcol "+(columnCounter-columnStart) + " ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter-columnStart]+ANSI_WHITE+"] ");   				
     	                        		if(matrix[rowStart-1+irow-1][columnCounter-columnStart]<=k) {
     	                        			sumSet.add(matrix[rowStart-1+irow-1][columnCounter-columnStart]);
@@ -157,16 +172,22 @@ public class SolutionV2 {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
-    	            				sumSet.add(iterationSum);
+    	            				if(!nullIterationFlag) {
+    	            					sumSet.add(iterationSum);
+    	            				}
     	            			}
     	        			}else {
-    	        				sumSet.add(iterationSum);
+//    	        				if(!nullIterationFlag) {
+//    	        					sumSet.add(iterationSum);
+//    	        				}
     	        				System.out.println(" row sum ==> "+ANSI_GREEN+sumRow+ANSI_WHITE);
     	        				if(iterationSum>k) {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
-    	            				sumSet.add(iterationSum);
+    	            				if(!nullIterationFlag) {
+    	            					sumSet.add(iterationSum);
+    	            				}
     	            			}
     	        			}
     	        		}
