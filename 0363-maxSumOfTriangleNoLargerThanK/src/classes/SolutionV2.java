@@ -128,7 +128,7 @@ public class SolutionV2 {
     	        			//selected row doing the scanning of all the combinations with all the columns
     	        			int sumRow = 0;
     	        			System.out.print("\t\t");
-    	        			for(int columnCounter = matrixColumns-1; columnCounter<0;columnCounter--) {
+    	        			for(int columnCounter = matrixColumns-1; columnCounter>=0;columnCounter--) {
 //    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
 //    	        				columnIterations--;
     	        				try {
@@ -157,6 +157,7 @@ public class SolutionV2 {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
+    	            				sumSet.add(iterationSum);
     	            			}
     	        			}else {
     	        				sumSet.add(iterationSum);
@@ -165,6 +166,7 @@ public class SolutionV2 {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
+    	            				sumSet.add(iterationSum);
     	            			}
     	        			}
     	        		}

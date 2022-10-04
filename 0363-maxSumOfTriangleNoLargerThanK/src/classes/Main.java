@@ -25,8 +25,13 @@ public class Main {
 //		returnV = sol.maxSumSubmatrix(matrix, k); //2
 //		System.out.println("			RESULT:: "+returnV);
 		
+//		matrix= new int[][]{{5,-4,-3,4},{-3,-4,4,5},{5,1,5,-4}};
+//		k=10;
+//		returnV = sol.maxSumSubmatrix(matrix, k); //10
+//		System.out.println("	\nRESULT:: "+returnV);
+//		
 		matrix= new int[][]{{5,-4,-3,4},{-3,-4,4,5},{5,1,5,-4}};
-		k=10;
+		k=8;
 		returnV = sol.maxSumSubmatrix(matrix, k); //10
 		System.out.println("	\nRESULT:: "+returnV);
 //		
