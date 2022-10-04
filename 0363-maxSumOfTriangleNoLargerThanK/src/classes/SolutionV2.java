@@ -59,63 +59,124 @@ public class SolutionV2 {
     		int columnIterations = matrixColumns - 1; // - 1?
     		//another for in which we decrease the number of columns, inside the irow for
     		//the variable of this for cycle is columnCounterFixed = another variable set to 0 but incrementing each for
-    		int columnStart = 1;
+//    		int columnStart = 1;
     		
-    		//then we need to do this but with column indexes reversed to do the clockverse of column scan
-    		//another for(2 cycles) in which the first cycle is dx shifting, the 2nd has columnStart reversed
-    		
-    		for(int icolumn=0;icolumn<matrixColumns;icolumn++) { //maybe columnIterations instead of matrixColumns?
-    			for(int irow=1;irow<=nIterations;irow++) { // i = number of rows we are considering for this cycle
-            		System.out.println(ANSI_CYAN+" 		ITERATION "+irow+ANSI_PURPLE+"\tCOLUMN SHIFT "+(columnStart-1)+ANSI_WHITE);
-            		//ANALYZING
-        			System.out.println("\t\t row "+rowCounterFixed+", analyzing row: "+ANSI_CYAN+(rowCounterFixed-1+irow)+ANSI_WHITE);
-        			//selected row doing the scanning of all the combinations with all the columns
-        			int sumRow = 0;
-        			System.out.print("\t\t");
-        			for(int columnCounter = 0; columnCounter<matrixColumns;columnCounter++) {
-//                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
-//        				columnIterations--;
-        				try {
-            				if((columnCounter+columnStart-1)<=(columnIterations)) { //avoiding ArrayIndexOutOfBoundsException
-            					System.out.print("\tcol "+(columnCounter+columnStart) + " ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter+columnStart-1]+ANSI_WHITE+"] ");   				
-                        		if(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]<=k) {
-                        			sumSet.add(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]);
-                        		}
-                        		sumRow+=matrix[rowStart-1+irow-1][columnCounter+columnStart-1];
-                        		if(sumRow<=k) {
-                        			sumSet.add(sumRow);
-                        		}
-            				}
-        				}catch(Exception e) {
-        					//ArrayIndexOutOfBounds
-        					System.out.print("Exception thrown: "+e);
-        				}
-        				
-        			}
-        			//row sum = sum of current iteration (row)
-        			//iteration sum = sum of current iteration (row) and previous iterations
-        			iterationSum += sumRow;
-        			if(sumRow > k) {
-            			System.out.print(" row sum = "+ANSI_RED+sumRow+ANSI_WHITE);
-            			if(iterationSum>k) {
-            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
-            			}else {
-            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
-            			}
-        			}else {
-        				sumSet.add(iterationSum);
-        				System.out.println(" row sum ==> "+ANSI_GREEN+sumRow+ANSI_WHITE);
-        				if(iterationSum>k) {
-            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
-            			}else {
-            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
-            			}
-        			}
-        		}
-    			//skipping to the next column
-    			columnStart++;
-    			iterationSum=0;
+    		//2 cycles to do direction sx and dx shifting
+    		for(int directionColumn = 0; directionColumn<2; directionColumn++) {
+        		int columnStart = 1;
+    			if(directionColumn == 0) {	// Column: Dx shifting
+    	    		for(int icolumn=0;icolumn<matrixColumns;icolumn++) { //maybe columnIterations instead of matrixColumns?
+    	    			for(int irow=1;irow<=nIterations;irow++) { // i = number of rows we are considering for this cycle
+    	            		System.out.println(ANSI_CYAN+" 		ITERATION "+irow+ANSI_PURPLE+"\tCOLUMN SHIFT - DX DIRECTION "+(columnStart-1)+ANSI_WHITE);
+    	            		//ANALYZING
+    	        			System.out.println("\t\t row "+rowCounterFixed+", analyzing row: "+ANSI_CYAN+(rowCounterFixed-1+irow)+ANSI_WHITE);
+    	        			//selected row doing the scanning of all the combinations with all the columns
+    	        			int sumRow = 0;
+    	        			System.out.print("\t\t");
+    	        			for(int columnCounter = 0; columnCounter<matrixColumns;columnCounter++) {
+//    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
+//    	        				columnIterations--;
+    	        				try {
+    	            				if((columnCounter+columnStart-1)<=(columnIterations)) { //avoiding ArrayIndexOutOfBoundsException
+    	            					System.out.print("\tcol "+(columnCounter+columnStart) + " ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter+columnStart-1]+ANSI_WHITE+"] ");   				
+    	                        		if(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]<=k) {
+    	                        			sumSet.add(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]);
+    	                        		}
+    	                        		sumRow+=matrix[rowStart-1+irow-1][columnCounter+columnStart-1];
+    	                        		if(sumRow<=k) {
+    	                        			sumSet.add(sumRow);
+    	                        		}
+    	            				}
+    	        				}catch(Exception e) {
+    	        					//ArrayIndexOutOfBounds
+    	        					System.out.print("Exception thrown: "+e);
+    	        				}
+    	        				
+    	        			}
+    	        			//row sum = sum of current iteration (row)
+    	        			//iteration sum = sum of current iteration (row) and previous iterations
+    	        			iterationSum += sumRow;
+    	        			if(sumRow > k) {
+    	            			System.out.print(" row sum = "+ANSI_RED+sumRow+ANSI_WHITE);
+    	            			if(iterationSum>k) {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
+    	            			}else {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
+    	            			}
+    	        			}else {
+    	        				sumSet.add(iterationSum);
+    	        				System.out.println(" row sum ==> "+ANSI_GREEN+sumRow+ANSI_WHITE);
+    	        				if(iterationSum>k) {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
+    	            			}else {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
+    	            			}
+    	        			}
+    	        		}
+    	    			//skipping to the next column
+    	    			columnStart++;
+    	    			iterationSum=0;
+    	    		}
+    			}
+    			
+    			if(directionColumn == 1) {	// Column: Sx shifting
+    	    		for(int icolumn=0;icolumn<matrixColumns;icolumn++) {
+    	    			for(int irow=1;irow<=nIterations;irow++) { // i = number of rows we are considering for this cycle
+    	            		System.out.println(ANSI_CYAN+" 		ITERATION "+irow+ANSI_PURPLE+"\tCOLUMN SHIFT - SX DIRECTION "+(columnStart-1)+ANSI_WHITE);
+    	            		//ANALYZING
+    	        			System.out.println("\t\t row "+rowCounterFixed+", analyzing row: "+ANSI_CYAN+(rowCounterFixed-1+irow)+ANSI_WHITE);
+    	        			//selected row doing the scanning of all the combinations with all the columns
+    	        			int sumRow = 0;
+    	        			System.out.print("\t\t");
+    	        			for(int columnCounter = matrixColumns-1; columnCounter<0;columnCounter--) {
+//    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
+//    	        				columnIterations--;
+    	        				try {
+    	            				if((columnCounter-columnStart)>=0) { //avoiding ArrayIndexOutOfBoundsException
+    	            					System.out.print("\tcol "+(columnCounter-columnStart) + " ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter-columnStart]+ANSI_WHITE+"] ");   				
+    	                        		if(matrix[rowStart-1+irow-1][columnCounter-columnStart]<=k) {
+    	                        			sumSet.add(matrix[rowStart-1+irow-1][columnCounter-columnStart]);
+    	                        		}
+    	                        		sumRow+=matrix[rowStart-1+irow-1][columnCounter-columnStart];
+    	                        		if(sumRow<=k) {
+    	                        			sumSet.add(sumRow);
+    	                        		}
+    	            				}
+    	        				}catch(Exception e) {
+    	        					//ArrayIndexOutOfBounds
+    	        					System.out.print("Exception thrown: "+e);
+    	        				}
+    	        				
+    	        			}
+    	        			//row sum = sum of current iteration (row)
+    	        			//iteration sum = sum of current iteration (row) and previous iterations
+    	        			iterationSum += sumRow;
+    	        			if(sumRow > k) {
+    	            			System.out.print(" row sum = "+ANSI_RED+sumRow+ANSI_WHITE);
+    	            			if(iterationSum>k) {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
+    	            			}else {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
+    	            			}
+    	        			}else {
+    	        				sumSet.add(iterationSum);
+    	        				System.out.println(" row sum ==> "+ANSI_GREEN+sumRow+ANSI_WHITE);
+    	        				if(iterationSum>k) {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
+    	            			}else {
+    	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
+    	            			}
+    	        			}
+    	        		}
+    	    			//skipping to the next column
+    	    			columnStart++;
+    	    			iterationSum=0;
+    	    		}
+    			}
     		}
+    		//column direction sx shifting 		|| and has columnStart reversed
+    		//column direction dx shifting
+
     		//skipping to next row
     		rowStart++;
     	}
