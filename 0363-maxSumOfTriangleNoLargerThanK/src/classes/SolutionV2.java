@@ -31,17 +31,13 @@ public class SolutionV2 {
     		System.out.println();
     	}
     	
-    	int returnVRows = calcMatrixSumRows(matrix,k,matrixRows,matrixColumns);
-//    	int returnVColumns = calcMatrixSumColumns(matrix,k,matrixRows,matrixColumns);
-//    	System.out.println(" {[( "+returnVRows+" |||  "+returnVColumns+" )]}");
-    	return returnVRows;
+    	return calcMatrixSumRows(matrix,k,matrixRows,matrixColumns);
     }
     
     public int calcMatrixSumRows(int[][] matrix, int k, int matrixRows, int matrixColumns) {
     	int sum = -100001;	//k is given, by constraints, in the range -105 <= k <= 105. sum is initialized to always be < k
     	Set<Integer> sumSet = new HashSet<>();    	
 
-    	// for a given matrix NxM we will have, for each row, N combinations and N-1 iterations
     	// analyzing rows
 		int rowStart = 1; //will be incremented after each row is finished (each row = N combinations)
     	for(int rowCounter = 0; rowCounter < matrixRows; rowCounter ++) {
@@ -57,15 +53,12 @@ public class SolutionV2 {
     		
     		//setting params for multicolumn, used inside the irow for
     		int columnIterations = matrixColumns - 1; // - 1?
-    		//another for in which we decrease the number of columns, inside the irow for
-    		//the variable of this for cycle is columnCounterFixed = another variable set to 0 but incrementing each for
-//    		int columnStart = 1;
-    		
+
     		//2 cycles to do direction sx and dx shifting
     		for(int directionColumn = 0; directionColumn<2; directionColumn++) {
         		int columnStart = 1;
     			if(directionColumn == 0) {	// Column: Dx shifting
-    	    		for(int icolumn=0;icolumn<matrixColumns;icolumn++) { //maybe columnIterations instead of matrixColumns?
+    	    		for(int icolumn=0;icolumn<matrixColumns;icolumn++) {
     	    			for(int irow=1;irow<=nIterations;irow++) { // i = number of rows we are considering for this cycle
     	            		System.out.println(ANSI_CYAN+" 		ITERATION "+irow+ANSI_PURPLE+"\tCOLUMN SHIFT - DX DIRECTION "+(columnStart-1)+ANSI_WHITE);
     	            		//ANALYZING
@@ -77,10 +70,8 @@ public class SolutionV2 {
     	        			boolean nullIterationFlag = true;
     	        			System.out.print("\t\t");
     	        			for(int columnCounter = 0; columnCounter<matrixColumns;columnCounter++) {
-//    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
-//    	        				columnIterations--;
     	        				try {
-    	            				if((columnCounter+columnStart-1)<=(columnIterations)) { //avoiding ArrayIndexOutOfBoundsException
+    	            				if((columnCounter+columnStart-1)<=(columnIterations)) {
     	            					nullIterationFlag = false;
     	            					
     	            					System.out.print("\tcol "+(columnCounter+columnStart) + " ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter+columnStart-1]+ANSI_WHITE+"] ");   				
@@ -109,9 +100,6 @@ public class SolutionV2 {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_GREEN+iterationSum+ANSI_WHITE);
     	            			}
     	        			}else {
-//    	        				if(!nullIterationFlag) {
-//    	        					sumSet.add(iterationSum);
-//    	        				}
     	        				System.out.println(" row sum ==> "+ANSI_GREEN+sumRow+ANSI_WHITE);
     	        				if(iterationSum>k) {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
@@ -142,10 +130,9 @@ public class SolutionV2 {
     	        			boolean nullIterationFlag = true;
     	        			System.out.print("\t\t");
     	        			for(int columnCounter = matrixColumns-1; columnCounter>=0;columnCounter--) {
-//    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
-//    	        				columnIterations--;
+
     	        				try {
-    	            				if((columnCounter-columnStart)>=0) { //avoiding ArrayIndexOutOfBoundsException
+    	            				if((columnCounter-columnStart)>=0) {
     	            					nullIterationFlag = false;
     	            					
     	            					System.out.print("\tcol "+(columnCounter-columnStart) + " ["+ANSI_YELLOW+matrix[rowStart-1+irow-1][columnCounter-columnStart]+ANSI_WHITE+"] ");   				
@@ -177,9 +164,6 @@ public class SolutionV2 {
     	            				}
     	            			}
     	        			}else {
-//    	        				if(!nullIterationFlag) {
-//    	        					sumSet.add(iterationSum);
-//    	        				}
     	        				System.out.println(" row sum ==> "+ANSI_GREEN+sumRow+ANSI_WHITE);
     	        				if(iterationSum>k) {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+ANSI_RED+iterationSum+ANSI_WHITE);
@@ -197,9 +181,6 @@ public class SolutionV2 {
     	    		}
     			}
     		}
-    		//column direction sx shifting 		|| and has columnStart reversed
-    		//column direction dx shifting
-
     		//skipping to next row
     		rowStart++;
     	}

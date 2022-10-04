@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Solution {
+	
     public int maxSumSubmatrix(int[][] matrix, int k) {
     	int matrixRows = matrix.length;	// N
     	int matrixColumns = matrix[0].length;	// M
@@ -21,17 +22,13 @@ public class Solution {
     		System.out.println();
     	}
     	
-    	int returnVRows = calcMatrixSumRows(matrix,k,matrixRows,matrixColumns);
-//    	int returnVColumns = calcMatrixSumColumns(matrix,k,matrixRows,matrixColumns);
-//    	System.out.println(" {[( "+returnVRows+" |||  "+returnVColumns+" )]}");
-    	return returnVRows;
+    	return calcMatrixSumRows(matrix,k,matrixRows,matrixColumns);
     }
     
     public int calcMatrixSumRows(int[][] matrix, int k, int matrixRows, int matrixColumns) {
     	int sum = -100001;	//k is given, by constraints, in the range -105 <= k <= 105. sum is initialized to always be < k
     	Set<Integer> sumSet = new HashSet<>();    	
 
-    	// for a given matrix NxM we will have, for each row, N combinations and N-1 iterations
     	// analyzing rows
 		int rowStart = 1; //will be incremented after each row is finished (each row = N combinations)
     	for(int rowCounter = 0; rowCounter < matrixRows; rowCounter ++) {
@@ -47,10 +44,7 @@ public class Solution {
     		
     		//setting params for multicolumn, used inside the irow for
     		int columnIterations = matrixColumns - 1; // - 1?
-    		//another for in which we decrease the number of columns, inside the irow for
-    		//the variable of this for cycle is columnCounterFixed = another variable set to 0 but incrementing each for
-//    		int columnStart = 1;
-    		
+
     		//2 cycles to do direction sx and dx shifting
     		for(int directionColumn = 0; directionColumn<2; directionColumn++) {
         		int columnStart = 1;
@@ -62,12 +56,15 @@ public class Solution {
     	        			System.out.println("\t\t row "+rowCounterFixed+", analyzing row: "+(rowCounterFixed-1+irow));
     	        			//selected row doing the scanning of all the combinations with all the columns
     	        			int sumRow = 0;
+    	        			//Added nullIterationFlag
+    	        			//if the current iteration has 0 elements the flag won't be changed, in order to avoid that sumRow (initialied at 0 but never changed) is added to sumSet
+    	        			boolean nullIterationFlag = true;
     	        			System.out.print("\t\t");
     	        			for(int columnCounter = 0; columnCounter<matrixColumns;columnCounter++) {
-//    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
-//    	        				columnIterations--;
     	        				try {
     	            				if((columnCounter+columnStart-1)<=(columnIterations)) { //avoiding ArrayIndexOutOfBoundsException
+    	            					nullIterationFlag = false;
+    	            					
     	            					System.out.print("\tcol "+(columnCounter+columnStart) + " ["+matrix[rowStart-1+irow-1][columnCounter+columnStart-1]+"] ");   				
     	                        		if(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]<=k) {
     	                        			sumSet.add(matrix[rowStart-1+irow-1][columnCounter+columnStart-1]);
@@ -94,12 +91,14 @@ public class Solution {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+iterationSum);
     	            			}
     	        			}else {
-    	        				sumSet.add(iterationSum);
     	        				System.out.println(" row sum ==> "+sumRow);
     	        				if(iterationSum>k) {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+iterationSum);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+iterationSum);
+    	            				if(!nullIterationFlag) {
+    	            					sumSet.add(iterationSum);
+    	            				}
     	            			}
     	        			}
     	        		}
@@ -117,12 +116,15 @@ public class Solution {
     	        			System.out.println("\t\t row "+rowCounterFixed+", analyzing row: "+(rowCounterFixed-1+irow));
     	        			//selected row doing the scanning of all the combinations with all the columns
     	        			int sumRow = 0;
+    	        			//Added nullIterationFlag
+    	        			//if the current iteration has 0 elements the flag won't be changed, in order to avoid that sumRow (initialied at 0 but never changed) is added to sumSet
+    	        			boolean nullIterationFlag = true;
     	        			System.out.print("\t\t");
     	        			for(int columnCounter = matrixColumns-1; columnCounter>=0;columnCounter--) {
-//    	                		int columnCounterFixed = columnCounter + 1; // = forColumnIncrIndex ;
-//    	        				columnIterations--;
     	        				try {
     	            				if((columnCounter-columnStart)>=0) { //avoiding ArrayIndexOutOfBoundsException
+    	            					nullIterationFlag = false;
+    	            					
     	            					System.out.print("\tcol "+(columnCounter-columnStart) + " ["+matrix[rowStart-1+irow-1][columnCounter-columnStart]+"] ");   				
     	                        		if(matrix[rowStart-1+irow-1][columnCounter-columnStart]<=k) {
     	                        			sumSet.add(matrix[rowStart-1+irow-1][columnCounter-columnStart]);
@@ -147,16 +149,19 @@ public class Solution {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+iterationSum);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+iterationSum);
-    	            				sumSet.add(iterationSum);
+    	            				if(!nullIterationFlag) {
+    	            					sumSet.add(iterationSum);
+    	            				}
     	            			}
     	        			}else {
-    	        				sumSet.add(iterationSum);
     	        				System.out.println(" row sum ==> "+sumRow);
     	        				if(iterationSum>k) {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+iterationSum);
     	            			}else {
     	            				System.out.println("\t\t\t\t\t\titeration sum = "+iterationSum);
-    	            				sumSet.add(iterationSum);
+    	            				if(!nullIterationFlag) {
+    	            					sumSet.add(iterationSum);
+    	            				}
     	            			}
     	        			}
     	        		}
@@ -166,9 +171,6 @@ public class Solution {
     	    		}
     			}
     		}
-    		//column direction sx shifting 		|| and has columnStart reversed
-    		//column direction dx shifting
-
     		//skipping to next row
     		rowStart++;
     	}
