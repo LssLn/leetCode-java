@@ -8,7 +8,7 @@ Repository used as a container to store exercises done on leetcode.com using Jav
     <li>0058 - lengthOfLastWord</li>
     <li>0066 - plusOne</li>
     <li>0500 - keyboardRow</li>
-	<li><del>0363 - maxSumOfTriangleNoLargerThanK</del></li> 
+	<li>0363 - maxSumOfTriangleNoLargerThanK</li> 
     <li>1704 - halvesStringsAlike</li>
 	<li>2351 - firstLetterToAppearTwice</li> 
 </ul>
