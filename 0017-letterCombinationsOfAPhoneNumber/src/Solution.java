@@ -31,25 +31,33 @@ public class Solution {
     	map.put(5, "jkl"); map.put(6, "mno"); map.put(7, "pqrs");
     	map.put(8, "tuv"); map.put(9, "wxyz");
     	
-//    	System.out.println("digits: "+digits);
+    	if(digits.length()==0) return resultList;
     	
-    	for(int i=0;i<digits.length();i++) {
-    		Integer digitOne = Integer.parseInt(""+digits.charAt(i));
-    		String lettersOne = map.get(digitOne);
-    		for(int k=0;k<digits.length();k++) {
-        		Integer digitTwo = Integer.parseInt(""+digits.charAt(k));
-        		String lettersTwo = map.get(digitTwo);
-        		if(digitOne != digitTwo) {
-        			for(int counter1=0;counter1<lettersOne.length();counter1++) {
-            			for(int counter2=0;counter2<lettersTwo.length();counter2++) {
-            				String str = ""+lettersOne.charAt(counter1)+lettersTwo.charAt(counter2);
-            				resultList.add(str);
-            			}
-            		}
-        		}
+    	resultList.add("");
+    	
+    	System.out.println("n results: "+countSolutions(digits, map));
+    	
+    	for(int i=0; i<digits.length(); i++) {
+    		Integer digit = Integer.parseInt(""+digits.charAt(i));
+    		String letters = map.get(digit);
+    		int size = resultList.size();
+    		for(int j=0; j<size; j++) {
+    			String current = resultList.remove(0);
+    			for(int k=0; k<letters.length(); k++) {
+    				resultList.add(current+letters.charAt(k));
+    			}
     		}
     	}
     	
     	return resultList;
+    }
+    
+    public Integer countSolutions(String digits, HashMap<Integer, String> map) {
+    	Integer nresults = 1;
+    	for(int i=0;i<digits.length();i++) {
+    		String letters = map.get(Integer.parseInt(""+digits.charAt(i)));
+    		nresults *= letters.length();
+    	}
+    	return nresults;
     }
 }
