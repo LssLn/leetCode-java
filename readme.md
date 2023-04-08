@@ -1,14 +1,59 @@
-Repository used as a container to store exercises done on leetcode.com using Java
+<h1>Challenges on leetcode.com using Java</h1>
 
-<ul>
-    <li>0001 - twoSum</li>    
-    <li>0009 - palindromeNumber</li>    
-    <li>0013 - romanToInt</li>
-	<li>0014 - longestCommonPrefix</li>    
-    <li>0058 - lengthOfLastWord</li>
-    <li>0066 - plusOne</li>
-    <li>0500 - keyboardRow</li>
-	<li>0363 - maxSumOfTriangleNoLargerThanK</li> 
-    <li>1704 - halvesStringsAlike</li>
-	<li>2351 - firstLetterToAppearTwice</li> 
-</ul>
+<table>
+  <tr>
+    <th>NUMBER</th>
+    <th>CHALLENGE TITLE</th>
+    <th>DIFFICULTY</th>
+  </tr>
+  <tr>
+    <td>0001</td>
+    <td>twoSum</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>0009</td>
+    <td>palindromeNumber</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>0013</td>
+    <td>romanToInt</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>0014</td>
+    <td>longestCommonPrefix</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>0058</td>
+    <td>lengthOfLastWord</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>0066</td>
+    <td>plusOne</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>0500</td>
+    <td>keyboardRow</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>0363</td>
+    <td>maxSumOfTriangleNoLargerThanK</td>
+    <td>HARD</td>
+  </tr>
+  <tr>
+    <td>1704</td>
+    <td>halvesStringsAlike</td>
+    <td>EASY</td>
+  </tr>
+  <tr>
+    <td>2351</td>
+    <td>firstLetterToAppearTwice</td>
+    <td>EASY</td>
+  </tr>
+</table>
