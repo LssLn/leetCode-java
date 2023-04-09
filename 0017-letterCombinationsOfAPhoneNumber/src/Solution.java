@@ -27,19 +27,20 @@ public class Solution {
     public List<String> letterCombinations(String digits) {    	
     	List<String> resultList = new ArrayList<>();
         HashMap<Integer, String> map = new HashMap<>();
-        map.put(2, "abc"); map.put(3, "def"); map.put(4, "ghi");
-    	map.put(5, "jkl"); map.put(6, "mno"); map.put(7, "pqrs");
-    	map.put(8, "tuv"); map.put(9, "wxyz");
+        map.put(2, "abc"); map.put(3, "def"); map.put(4, "ghi");map.put(5, "jkl"); map.put(6, "mno"); map.put(7, "pqrs");map.put(8, "tuv"); map.put(9, "wxyz");
     	
-    	if(digits.length()==0) return resultList;
-    	
-    	resultList.add("");
+    	if(digits.length()==0) {return resultList;}
     	
     	System.out.println("n results: "+countSolutions(digits, map));
     	
+    	//without it can't store any data as it needs something to begin with
+    	resultList.add("");
+    	//for each digit in input
     	for(int i=0; i<digits.length(); i++) {
+    		//extracts the letters corresponding to that digit
     		Integer digit = Integer.parseInt(""+digits.charAt(i));
     		String letters = map.get(digit);
+    		//cycle the resultList, replacing each element with the new combination.
     		int size = resultList.size();
     		for(int j=0; j<size; j++) {
     			String current = resultList.remove(0);
@@ -60,4 +61,8 @@ public class Solution {
     	}
     	return nresults;
     }
+    
+    /*
+     * 
+     */
 }
