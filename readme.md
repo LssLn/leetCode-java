@@ -49,17 +49,24 @@
     <td style="color:green">EASY</td>
     <td><img src="https://i.imgur.com/5l8gBLT.png" style="width:15px;"></td>
   </tr>
+    <tr>
+    <td>0118</td>
+    <td>pascalsTriangle</td>
+    <td style="color:green">EASY</td>
+    <td><img src="https://i.imgur.com/5l8gBLT.png" style="width:15px;"></td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>0363</td>
+    <td>maxSumOfTriangleNoLargerThanK</td>
+    <td style="color:red">HARD</td>
+    <td></td>
+  </tr>
   <tr>
     <td>0500</td>
     <td>keyboardRow</td>
     <td style="color:green">EASY</td>
     <td><img src="https://i.imgur.com/5l8gBLT.png" style="width:15px;"></td>
-  </tr>
-  <tr>
-    <td>0363</td>
-    <td>maxSumOfTriangleNoLargerThanK</td>
-    <td style="color:red">HARD</td>
-    <td></td>
   </tr>
   <tr>
     <td>1704</td>
