@@ -6,14 +6,14 @@ public class Main {
 	    try {
 	      	String input1 = input.next();
 	      	String solution = sortVowels(input1);
-	      	System.out.println(solution);
+	      	System.out.println("return: "+solution);
 	    } finally {
 	    	input.close();
 	    }
   }
   
   public static String sortVowels(String input) {
-	  input=input.toLowerCase();
+//	  input=input.toLowerCase();
 	  StringBuilder output = new StringBuilder();;
 	  ArrayList<String> vowels = new ArrayList<>();
 	  if(input!=null) {
@@ -44,7 +44,7 @@ public class Main {
   }
   
   public static boolean isAVowel(String s) {
-	  if("aeiou".contains(s)) {
+	  if("aeiou".contains(s) || "AEIOU".contains(s)) {
 		  return true;
 	  }else {
 		  return false;
